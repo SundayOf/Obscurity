@@ -1,6 +1,7 @@
 package com.obscurity.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -12,9 +13,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Player {
     float xCenter,yCenter,width,height,movementSpeed;
     private float elapsedTime = 0f;
-    TextureAtlas textureAtlas;
-    Animation <TextureRegion> animation;
-    Texture texture;
+    TextureAtlas walktoright, walktoleft;
+    Animation <TextureRegion> animation1,animation2;
+    Texture texture1, texture2;
     boolean isWalking = false;
     public Player(float xCenter, float yCenter, float width, float height, float movementSpeed){
         this.xCenter = xCenter;
@@ -24,17 +25,19 @@ public class Player {
         this.movementSpeed = movementSpeed;
     }
     public void Create(){
-        texture = new Texture("HeroAnimations/Standing/hero1.png");
-        textureAtlas = new TextureAtlas(Gdx.files.internal("HeroAnimations/Walk/walk.atlas"));
-        animation = new Animation<TextureRegion>(1f/4f, textureAtlas.getRegions());
-
+        texture1 = new Texture("HeroAnimations/Standing/hero1.png");
+        texture2 = new Texture("HeroAnimations/Standing/hero2.png");
+        walktoright = new TextureAtlas(Gdx.files.internal("HeroAnimations/Walk/walk.atlas"));
+        walktoleft = new TextureAtlas(Gdx.files.internal("HeroAnimations/Walk/walktoleft.atlas"));
+        animation1 = new Animation<TextureRegion>(1f / 4f, walktoright.getRegions());
+        animation2 = new Animation<TextureRegion>(1f / 5f, walktoleft.getRegions());
     }
-    public void DrawAnimation(Batch batch){
+    public void DrawAnimation(Batch batch, Animation<TextureRegion> animation){
         elapsedTime += Gdx.graphics.getDeltaTime();
         batch.draw(animation.getKeyFrame(elapsedTime,true),xCenter,yCenter,width,height);
         isWalking = true;
     }
-    public void draw(Batch batch){
+    public void draw(Batch batch, Texture texture){
         batch.draw(texture,xCenter,yCenter,width,height);
     }
 }

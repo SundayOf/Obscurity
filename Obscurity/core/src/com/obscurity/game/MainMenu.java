@@ -34,9 +34,11 @@ public class MainMenu extends ApplicationAdapter {
 	Boolean isonground;
 	OrthographicCamera cam;
 	Vector2 tmpxy;
+	boolean checkKey;
 	@Override
 	public void create () {
 		isonground = false;
+		checkKey = false;
 		gravity = 0;
 		cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		cam.position.x = Gdx.graphics.getWidth()/2;
@@ -70,7 +72,7 @@ public class MainMenu extends ApplicationAdapter {
 	public void render () {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+		pp.isWalking = false;
 		isonground = false;
 		gravity += (10 * 9.8f)/2000;
 		player.y-=gravity;
@@ -104,11 +106,18 @@ public class MainMenu extends ApplicationAdapter {
 		batch.begin();
 		pp.xCenter = player.x;
 		pp.yCenter = player.y;
-		if (Gdx.input.isKeyPressed(Input.Keys.D)) {pp.isWalking = true;}
-		if (!Gdx.input.isKeyPressed(Input.Keys.D)) {pp.isWalking = false;}
-		if (pp.isWalking){
-			pp.DrawAnimation(batch);
-		} else pp.draw(batch);
+		if (Gdx.input.isKeyPressed(Input.Keys.D)) {pp.isWalking = true; checkKey = true;}
+		if (Gdx.input.isKeyPressed(Input.Keys.A)) {pp.isWalking = true; checkKey = false;}
+
+
+		if (pp.isWalking && Gdx.input.isKeyPressed(Input.Keys.D)){
+			pp.DrawAnimation(batch, pp.animation1);
+		}
+		else if (pp.isWalking && Gdx.input.isKeyPressed(Input.Keys.A)){
+			pp.DrawAnimation(batch, pp.animation2);
+		}
+		if (pp.isWalking == false && checkKey) { pp.draw(batch, pp.texture1); }
+		if (pp.isWalking == false && !checkKey) { pp.draw(batch, pp.texture2);}
 		batch.end();
 		sr.setColor(Color.GREEN);
 		sr.rect(player.x, player.y, player.width, player.height);
