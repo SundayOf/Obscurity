@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="50" height="12" tilewidth="128" tileheight="128" infinite="0" nextlayerid="7" nextobjectid="12">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="50" height="12" tilewidth="128" tileheight="128" infinite="0" nextlayerid="7" nextobjectid="13">
  <tileset firstgid="1" name="road" tilewidth="128" tileheight="128" tilecount="1" columns="1">
   <image source="road.png" trans="ff00ff" width="128" height="128"/>
  </tileset>
@@ -30,12 +30,12 @@
   </data>
  </layer>
  <objectgroup id="5" name="bounds">
-  <object id="2" x="0.0150884" y="1527.97" width="6399.97" height="4.38213"/>
-  <object id="9" x="-1.66533e-16" y="1408" width="14.3333" height="119.333"/>
-  <object id="11" x="241.167" y="1408.33" width="14.3333" height="119.333"/>
+  <object id="2" x="0.0585667" y="1527.97" width="6399.93" height="4.38213"/>
+  <object id="9" x="0.0724638" y="1408.06" width="8" height="119.792"/>
+  <object id="12" x="247.927" y="1408.12" width="8.02095" height="119.646"/>
  </objectgroup>
  <objectgroup id="4" name="Player">
-  <object id="1" x="116.205" y="1449.57" width="25" height="65.3333">
+  <object id="1" x="114.205" y="1408.9" width="25" height="65.3333">
    <properties>
     <property name="Health" type="float" value="100"/>
     <property name="dmg" type="float" value="5"/>
