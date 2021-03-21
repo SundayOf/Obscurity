@@ -35,7 +35,7 @@
   <object id="12" x="247.927" y="1408.12" width="8.02095" height="119.646"/>
  </objectgroup>
  <objectgroup id="4" name="Player">
-  <object id="1" x="114.205" y="1408.9" width="25" height="65.3333">
+  <object id="1" x="41.2046" y="1464.24" width="25.5" height="54.3333">
    <properties>
     <property name="Health" type="float" value="100"/>
     <property name="dmg" type="float" value="5"/>

@@ -33,6 +33,7 @@ public class MainMenu extends ApplicationAdapter {
 	float gravity;
 	Boolean isonground;
 	OrthographicCamera cam;
+	Vector2 tmpxy;
 	@Override
 	public void create () {
 		isonground = false;
@@ -56,7 +57,7 @@ public class MainMenu extends ApplicationAdapter {
 						.getByType(RectangleMapObject.class).get(i).getRectangle();
 			}
 		}
-		pp = new Player(player.x,player.y,player.width,player.height, .5f);
+		pp = new Player(player.x + player.width / 2, player.y + player.height / 2,player.width,player.height, .5f);
 		pp.Create();
 
 		bounds = new Rectangle[map.getLayers().get("bounds").getObjects().getByType(RectangleMapObject.class).size];
@@ -87,8 +88,8 @@ public class MainMenu extends ApplicationAdapter {
 				if (bounds[i].overlaps(player))player.x+=pp.movementSpeed;
 			}}
 
-		cam.position.x = player.x;
-		cam.position.y = player.y;
+		cam.position.x = player.x + player.width / 2;
+		cam.position.y = player.y + player.height / 2;
 		cam.update();
 
 //		render.setView((OrthographicCamera) stage.getCamera());
@@ -97,8 +98,9 @@ public class MainMenu extends ApplicationAdapter {
 		stage.getBatch().setProjectionMatrix(cam.combined);
 		render.setView(cam);
 		stage.draw();
+		sr.setProjectionMatrix(cam.combined);
 		sr.begin(ShapeRenderer.ShapeType.Line);
-		sr.setColor(Color.BLUE);
+		batch.setProjectionMatrix(cam.combined);
 		batch.begin();
 		pp.xCenter = player.x;
 		pp.yCenter = player.y;
@@ -108,6 +110,7 @@ public class MainMenu extends ApplicationAdapter {
 			pp.DrawAnimation(batch);
 		} else pp.draw(batch);
 		batch.end();
+		sr.setColor(Color.GREEN);
 		sr.rect(player.x, player.y, player.width, player.height);
 		sr.setColor(Color.WHITE);
 		for (int i=0;i<bounds.length;i++){
